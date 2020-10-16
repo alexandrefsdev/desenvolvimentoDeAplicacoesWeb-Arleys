@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+        <link rel="stylesheet" href="meuCss.css" type="text/css"/>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h1>LISTAGEM DOS PRODUTOS CADASTRADOS</h1>
+            <h:commandButton value="VOLTAR" style="width: 95%" action="voltaParaIndex" />
+            <h:commandButton value="CRIA NOVO PRODUTO" style="width: 95%" action="voltaParaIndex" />
+            <br/>
+            <hr/>
+
+            <h:dataTable style="width: 95%" 
+                         var="umProd" 
+                         value="#{produtoController.produtos}" 
+                         border="1" 
+                         rowClasses="azul,verde">
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputLabel value="CÓDIGO"/>
+                    </f:facet>
+
+                    <h:outputLabel value="#{umProduto.idproduto}"/>
+
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputLabel value="NOME"/>
+                    </f:facet>
+
+                    <h:outputLabel value="#{umProduto.nome}"/>
+
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputLabel value="PREÇO"/>
+                    </f:facet>
+
+                    <h:outputLabel value="#{umProduto.nome}"/>
+
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputLabel value="VALIDADE"/>
+                    </f:facet>
+
+                    <h:outputLabel value="#{umProduto.validade}">
+                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                    </h:outputLabel>
+
+                </h:column>
+
+            </h:dataTable>
+        </h:form>
+    </h:body>
+</html>
+

@@ -16,16 +16,17 @@ public abstract class DaoUtil {
     public Connection getConnection() throws ClassNotFoundException, SQLException {
         if(cx == null) {
             // cria conexão
-            String url = "jdbc:mysql://localhost:3306/quarentena?zeroDateTimeBehavior=convertToNull [root em Esquema default]";
+            //String url = "jdbc:mysql://localhost:3306/quarentena?zeroDateTimeBehavior=convertToNull [root em Esquema default]";
+            String url = "jdbc:mysql://localhost:3306/quarentena?useTimezone=true&serverTimezone=UTC";
             String psw = "123456789";
             String usr = "root";
-            String drv = "com.mysql.jdbc.Driver";
+            //String drv = "com.mysql.jdbc.Driver";
+            String drv = "com.mysql.cj.jdbc.Driver";
             
             Class.forName(drv);
             
             cx = DriverManager.getConnection(url, usr, psw);
-        }
-        
+        }   
         return cx;
     }
     
