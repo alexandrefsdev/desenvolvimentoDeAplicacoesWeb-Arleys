@@ -1,5 +1,6 @@
 package br.edu.fja.aula5.controllers;
 
+import br.edu.fja.aula5.models.Produto;
 import br.edu.fja.aula5.models.Vendedor;
 import br.edu.fja.aula5.servico.VendedorServico;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -26,9 +27,23 @@ public class VendedorController {
         return servico.buscaTodos();
     }
 
-    @RequestMapping(method = RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping("/cadastrar")
     public Vendedor cadastrar(@RequestBody Vendedor vendedor) {
         return servico.inserir(vendedor);
     }
 
+    @PutMapping("/alterar")
+    public Vendedor alterar(@RequestBody Vendedor vendedor) {
+        return servico.alterar(vendedor);
+    }
+
+    @DeleteMapping("/apagar/{id}")
+    public void apagar(@PathVariable("id") long id) {
+        servico.apagar(id);
+    }
+    // SOBRECARREGANDO o médodo apagar
+    @DeleteMapping("/apagar")
+    public void apagar(@RequestBody Vendedor vendedor) {
+        servico.apagar(vendedor.getIdvendedor());
+    }
 }
